@@ -1,0 +1,9 @@
+{
+  "RootNamespace":"",
+  "Packages": [
+    "Fuse.Triggers"
+  ],
+  "Includes": [
+    "Triggers.uno"
+  ]
+}
