@@ -3,44 +3,46 @@ using Uno.Collections;
 using Fuse;
 using Fuse.Triggers;
 
-public class Mobile: Trigger
-{
-	protected override void OnRooted()
+namespace Bolav.Triggers {
+	public class Mobile: Trigger
 	{
-		base.OnRooted();
-		if defined(mobile)
+		protected override void OnRooted()
 		{
-			Activate();
+			base.OnRooted();
+			if defined(mobile)
+			{
+				Activate();
+			}
+		}
+
+		protected override void OnUnrooted()
+		{
+			if defined(mobile)
+			{
+				Deactivate();
+			}
+			base.OnUnrooted();
 		}
 	}
 
-	protected override void OnUnrooted()
+	public class Desktop: Trigger
 	{
-		if defined(mobile)
+		protected override void OnRooted()
 		{
-			Deactivate();
+			base.OnRooted();
+			if defined(!mobile)
+			{
+				Activate();
+			}
 		}
-		base.OnUnrooted();
-	}
-}
 
-public class Desktop: Trigger
-{
-	protected override void OnRooted()
-	{
-		base.OnRooted();
-		if defined(!mobile)
+		protected override void OnUnrooted()
 		{
-			Activate();
+			if defined(!mobile)
+			{
+				Deactivate();
+			}
+			base.OnUnrooted();
 		}
-	}
-
-	protected override void OnUnrooted()
-	{
-		if defined(!mobile)
-		{
-			Deactivate();
-		}
-		base.OnUnrooted();
 	}
 }
